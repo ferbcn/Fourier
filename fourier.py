@@ -35,9 +35,10 @@ if __name__ == "__main__":
     fig.tight_layout()
     # fig.suptitle('DFT vs FFT')
 
+    # draw time plot
     axs[0].set(xlabel='Time [s]', ylabel='Amplitude')
     axs[0].set_title('Time Domain')
-    axs[0].plot(t, s)
+    axs[0].plot(t, s, color='darkred')
 
     # Discrete Fourier Transformation (sooo slow)
     ini = time.time()
@@ -61,19 +62,19 @@ if __name__ == "__main__":
     # draw plot
     axs[1].set(xlabel='Frequency [Hz]', ylabel='Amplitude')
     axs[1].set_title('Frequency Domain (DFT)')
-    axs[1].bar(f[:N // 2], np.abs(dft)[:N // 2] * 1 / N, width=1.5)  # 1 / N is a normalization factor
+    axs[1].bar(f[:N // 2], np.abs(dft)[:N // 2] * 1 / N, width=1.5, color='darkred')  # 1 / N is a normalization factor
 
     # draw plot
     axs[2].set(xlabel='Frequency [Hz]', ylabel='Amplitude')
     axs[2].set_title('Frequency Domain (FFT)')
-    axs[2].bar(f[:N // 2], np.abs(fft)[:N // 2] * 1 / N, width=1.5)  # 1 / N is a normalization factor
+    axs[2].bar(f[:N // 2], np.abs(fft)[:N // 2] * 1 / N, width=1.5, color='darkred')  # 1 / N is a normalization factor
 
     # Computation Times
     x = ['FFT', 'DFT']
     y = [elapsed_fft, elapsed_dft]
     axs[3].set(xlabel='Time [Ms]', ylabel='Algorithm')
     axs[3].set_title('Computation Time DFT vs FFT')
-    axs[3].barh(x, y)
+    axs[3].barh(x, y, color='darkred')
 
     # compare DFT and FFT
     diffs = (np.abs(dft)[:N // 2] - np.abs(fft)[:N // 2]) * (1 / N)
@@ -81,6 +82,6 @@ if __name__ == "__main__":
     # draw plot
     axs[4].set(xlabel='Frequency [Hz]', ylabel='Amp. Difference')
     axs[4].set_title('Computation Difference')
-    axs[4].bar(f[:N // 2], diffs, width=1.5)  # 1 / N is a normalization factor
+    axs[4].bar(f[:N // 2], diffs, width=1.5, color='darkred')  # 1 / N is a normalization factor
 
     plt.show()
