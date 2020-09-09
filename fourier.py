@@ -75,11 +75,8 @@ if __name__ == "__main__":
     axs[3].set_title('Computation Time DFT vs FFT')
     axs[3].barh(x, y)
 
-    # compare data
-    diffs = list()
-    for i, point in enumerate(dft):
-        diffs.append(dft[i] - fft[i])
-    diffs = diffs[:N // 2]
+    # compare DFT and FFT
+    diffs = (np.abs(dft)[:N // 2] - np.abs(fft)[:N // 2]) * (1 / N)
 
     # draw plot
     axs[4].set(xlabel='Frequency [Hz]', ylabel='Amp. Difference')
