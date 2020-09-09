@@ -71,7 +71,7 @@ if __name__ == "__main__":
     # Computation Times
     x = ['FFT', 'DFT']
     y = [elapsed_fft, elapsed_dft]
-    axs[3].set(xlabel='Algorithm', ylabel='Time [Ms]')
+    axs[3].set(xlabel='Time [Ms]', ylabel='Algorithm')
     axs[3].set_title('Computation Time DFT vs FFT')
     axs[3].barh(x, y)
 
